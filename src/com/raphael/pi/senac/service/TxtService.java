@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class TxtService {
 
-    public static String SAVE_FILE_PATH = "C:\\";
+    public static String SAVE_FILE_PATH = "C:\\workspace\\";
 
     public void salvarClasseEmTxt(SalvavelEmTxt classeParaSalvar) throws IOException {
         String str = classeParaSalvar.toString();
