@@ -1,6 +1,7 @@
 package com.raphael.pi.senac.service;
 
-import com.raphael.pi.senac.models.*;
+import com.raphael.pi.senac.models.FileNameEnum;
+import com.raphael.pi.senac.models.SalvavelEmTxt;
 
 import java.io.File;
 import java.io.FileReader;
@@ -9,7 +10,7 @@ import java.io.IOException;
 
 public class TxtService {
 
-    private final String SAVE_FILE_PATH = "C:\\workspace\\";
+    public static String SAVE_FILE_PATH = "C:\\";
 
     public void salvarClasseEmTxt(SalvavelEmTxt classeParaSalvar) throws IOException {
         String str = classeParaSalvar.toString();
@@ -24,10 +25,14 @@ public class TxtService {
     }
 
     private FileWriter criarFileWriter(String fileName) throws IOException {
+        if (!SAVE_FILE_PATH.endsWith("\\")){
+            throw new IOException("Caminho espeficificado deve terminar com '\\'");
+        }
         File f = new File(SAVE_FILE_PATH + fileName);
         if(f.exists() && !f.isDirectory()) {
             return new FileWriter(SAVE_FILE_PATH + fileName,true);
         }
+
         return new FileWriter(SAVE_FILE_PATH + fileName,false);
     }
 
