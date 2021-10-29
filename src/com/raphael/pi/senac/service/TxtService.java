@@ -31,15 +31,16 @@ public class TxtService {
         return new FileWriter(SAVE_FILE_PATH + fileName,false);
     }
 
-    public void listarPessoaFisica(Class clazz) {
-        final String FILE_NAME = clazz.equals(Aluno.class) ? FileNameEnum.ALUNOS.getFileName() : FileNameEnum.PROFESSORES.getFileName();
+    public void listar(Class clazz) {
+        FileNameEnum fileNameEnum = FileNameEnum.findByClass(clazz);
+        final String FILE_NAME = fileNameEnum.getFileName();
         try(FileReader fileReader = new FileReader(SAVE_FILE_PATH + FILE_NAME)) {
             int content;
             while ((content = fileReader.read()) != -1) {
                 System.out.print((char) content);
             }
         } catch (IOException ex) {
-            System.out.printf("Nenhum %s cadastrado.%n", (clazz.equals(Aluno.class) ? "aluno" : "professor"));
+            System.out.printf("Nenhum %s cadastrado.%n", clazz.getSimpleName().toLowerCase());
         }
     }
 }

@@ -23,6 +23,7 @@ public class MenuService {
             System.out.println("3 - Cadastrar um fornecedor");
             System.out.println("4 - Listar professores");
             System.out.println("5 - Listar alunos");
+            System.out.println("6 - Listar fornecedores");
             System.out.println("0 - Sair");
 
             Integer opcao = scanner.nextInt();
@@ -38,19 +39,26 @@ public class MenuService {
                     cadastrarPessoaFisica(Aluno.class);
                     break;
                 case 3:
-                    cadastrarPessoaJuridica(Fornecedor.class);
+                    cadastrarPessoaJuridica();
                     break;
                 case 4:
-                    listarProfessores();
+                    listar(Professor.class);
                     break;
                 case 5:
-                    listarAlunos();
+                    listar(Aluno.class);
+                    break;
+                case 6:
+                    listar(Fornecedor.class);
                     break;
             }
         }
     }
 
-    private void cadastrarPessoaJuridica(Class<Fornecedor> fornecedorClass) throws IOException {
+    private void listar(Class clazz) {
+        service.listar(clazz);
+    }
+
+    private void cadastrarPessoaJuridica() throws IOException {
         System.out.println("Digite o cnpj: ");
         scanner.nextLine();
         String cnpj = scanner.nextLine();
@@ -98,14 +106,6 @@ public class MenuService {
         novoFornecedor.setDataUltimaCompra(dataUltimaCompra);
 
         service.salvarClasseEmTxt(novoFornecedor);
-    }
-
-    private void listarProfessores() {
-        service.listarPessoaFisica(Professor.class);
-    }
-
-    private void listarAlunos() {
-        service.listarPessoaFisica(Aluno.class);
     }
 
     private void cadastrarPessoaFisica(Class clazz) throws IOException {
