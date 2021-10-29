@@ -31,16 +31,22 @@ public class TxtService {
         return new FileWriter(SAVE_FILE_PATH + fileName,false);
     }
 
-    public void listar(Class clazz) {
+    public void listar(Class<? extends SalvavelEmTxt> clazz) {
         FileNameEnum fileNameEnum = FileNameEnum.findByClass(clazz);
         final String FILE_NAME = fileNameEnum.getFileName();
         try(FileReader fileReader = new FileReader(SAVE_FILE_PATH + FILE_NAME)) {
             int content;
+            System.out.print("------> ");
             while ((content = fileReader.read()) != -1) {
                 System.out.print((char) content);
+                if (content == 10) {
+                    System.out.print("------> ");
+                }
             }
+            System.out.print("FIM DO ARQUIVO\n\n");
         } catch (IOException ex) {
-            System.out.printf("Nenhum %s cadastrado.%n", clazz.getSimpleName().toLowerCase());
+            System.out.printf("------> Nenhum %s cadastrado.\n\n", clazz.getSimpleName().toLowerCase());
         }
+
     }
 }
