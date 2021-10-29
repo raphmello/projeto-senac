@@ -2,7 +2,6 @@ package com.raphael.pi.senac.service;
 
 import com.raphael.pi.senac.models.Aluno;
 import com.raphael.pi.senac.models.Fornecedor;
-import com.raphael.pi.senac.models.PessoaFisica;
 import com.raphael.pi.senac.models.Professor;
 
 import java.io.IOException;
